@@ -4,18 +4,24 @@ class Crain : public CraneCrane
 {
 private:
     ev3dev::touch_sensor touch_q;
+    ev3dev::ultrasonic_sensor ultra_q;
     ev3dev::motor a;
     ev3dev::motor b; 
     ev3dev::motor c;
     
 public:
     // Hardware Configuration
-    Crain():m_speed(0), touch_q(ev3dev::INPUT_2),a(ev3dev::OUTPUT_B), b(ev3dev::OUTPUT_C), c(ev3dev::OUTPUT_A)
+    Crain():m_speed(0), touch_q(ev3dev::INPUT_2), ultra_q(ev3dev::INPUT_3),a(ev3dev::OUTPUT_B), b(ev3dev::OUTPUT_C), c(ev3dev::OUTPUT_A)
     {
         
     }
     
     int m_speed;
+    
+    float get_distance_centimeters() 
+    {
+        return ultra_q.distance_centimeters();
+    }
     
     bool get_touch_pressed()
     {
