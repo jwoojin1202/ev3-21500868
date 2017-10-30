@@ -13,8 +13,8 @@ int main(){
     int * const ptr2 = &val2;
     const int * const ptr3 = &val3;
     
-    num = 20;
-    
+    ptr3 = &val2;
+
     cout << num << endl;
     cout << ptr1 << endl;
     cout << ptr2 << endl;
