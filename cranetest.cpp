@@ -106,12 +106,10 @@ void Crain::example_code2()
     {   
         
         set_left(get_left());
-        if(get_left())
-        {
-               b.set_position_sp(302);
-               b.set_speed_sp(get_speed());
-               b.run_to_abs_pos();
-        }
+        b.set_position_sp(302);
+        b.set_speed_sp(get_speed());
+        b.run_to_abs_pos();
+        
     }
 }
 void Crain::example_code()
