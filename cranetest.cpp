@@ -104,12 +104,23 @@ void Crain::example_code2()
 {
     while(get_escape() == false)
     {   
+        int posb;
+        posb = b.position();
+        if(posb == 302)
+        {
+            set_right(get_right());
+            b.set_position_sp(-272);
+            b.set_speed_sp(get_speed());
+            b.run_to_abs_pos();
+        }
+        if(posb == -272)
+        {
+            set_left(get_left());
+            b.set_position_sp(302);
+            b.set_speed_sp(get_speed());
+            b.run_to_abs_pos();
         
-        set_left(get_left());
-        b.set_position_sp(302);
-        b.set_speed_sp(get_speed());
-        b.run_to_abs_pos();
-        
+        }
     }
 }
 void Crain::example_code()
