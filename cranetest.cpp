@@ -98,8 +98,22 @@ public:
     }
 public:
     void example_code();
+    void example_code2();
 };
-
+void Crain::example_code2()
+{
+    while(get_escape() == false)
+    {   
+        
+        set_left(get_left());
+        if(get_left())
+        {
+               b.set_position_sp(302);
+               b.set_speed_sp(get_speed());
+               b.run_to_abs_pos();
+        }
+    }
+}
 void Crain::example_code()
 { //This function is for example, you should develop your own logics
     while(get_escape() == false)
@@ -110,6 +124,14 @@ void Crain::example_code()
         set_left(ev3dev::button::left.pressed());
         set_escape(ev3dev::button::back.pressed());
         set_enter(ev3dev::button::enter.pressed());
+        
+        int posa, posb, posc;
+        posa = a.position();
+        posb = b.position();
+        posc = c.position();
+        std::cout << "posa: "<< posa << std::endl;
+        std::cout << "posb: "<< posb << std::endl;
+        std::cout << "posc: "<< posc << std::endl;
         
         if(get_up())
         {   
@@ -153,7 +175,7 @@ int main()
         if(crain.get_touch_pressed()==true){ 
             
         
-        crain.example_code(); //This line is for example, you should erase this ex_code in your 'real code' 
+        crain.example_code2(); //This line is for example, you should erase this ex_code in your 'real code' 
   
         }
     }
