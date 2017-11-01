@@ -1,5 +1,6 @@
 #include "h_crane.h"
 
+
 class Crain : public CraneCrane
 {
 private:
@@ -102,27 +103,23 @@ public:
 };
 void Crain::example_code2()
 {
-    while(get_escape() == false)
-    {   
+    
         int posb;
         posb = b.position();
-        std::cout<< posb << std::endl;
-        if(posb < 320 && posb > 280)
-        {
-            set_right(get_right());
-            b.set_position_sp(-272);
-            b.set_speed_sp(get_speed());
-            b.run_to_abs_pos();
-        }
-        if(posb < -250 && posb > -300)
-        {
-            set_left(get_left());
-            b.set_position_sp(302);
-            b.set_speed_sp(get_speed());
-            b.run_to_abs_pos();
+        std::cout << posb << std::endl;
         
-        }
-    }
+        
+        set_left(get_left());
+        b.set_position_sp(600);
+        b.set_speed_sp(3*get_speed());
+        b.run_to_abs_pos();
+        
+            
+            
+        
+        
+
+    
 }
 void Crain::example_code()
 { //This function is for example, you should develop your own logics
