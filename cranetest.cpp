@@ -106,14 +106,15 @@ void Crain::example_code2()
     {   
         int posb;
         posb = b.position();
-        if(posb == 302)
+        std::cout<< posb << std::endl;
+        if(posb < 320 && posb > 280)
         {
             set_right(get_right());
             b.set_position_sp(-272);
             b.set_speed_sp(get_speed());
             b.run_to_abs_pos();
         }
-        if(posb == -272)
+        if(posb < -250 && posb > -300)
         {
             set_left(get_left());
             b.set_position_sp(302);
