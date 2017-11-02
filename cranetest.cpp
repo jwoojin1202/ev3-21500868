@@ -1,4 +1,5 @@
 #include "h_crane.h"
+#include <iostream>
 
 
 class Crain : public CraneCrane
@@ -103,18 +104,28 @@ public:
 };
 void Crain::example_code2()
 {
-    
         int posb;
         posb = b.position();
-        std::cout << posb << std::endl;
+        b.reset();
+        if(posb == 0)
+        {   
+            b.set_position_sp(600);
+            b.set_speed_sp(get_speed());
+            b.run_to_abs_pos();
+            b.stop_action();
+        }
         
         
-        set_left(get_left());
-        b.set_position_sp(600);
-        b.set_speed_sp(3*get_speed());
-        b.run_to_abs_pos();
         
-            
+        
+        
+        
+        /*set_right(get_right());
+        b.set_position_sp(0);
+        b.set_speed_sp(-1*get_speed());
+        b.run_to_abs_pos();*/
+        
+        
             
         
         

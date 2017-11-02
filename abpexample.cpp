@@ -111,7 +111,7 @@ void Crain::real_code()
 void Crain::example_code()
 { //This function is for example, you should develop your own logics
 
-std::cout << "test "<< std::endl;
+
 
 while(get_escape() == false)
 {
