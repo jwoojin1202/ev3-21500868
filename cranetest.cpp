@@ -2,6 +2,7 @@
 #include <iostream>
 
 
+
 class Crain : public CraneCrane
 {
 private:
@@ -13,7 +14,7 @@ private:
     
 public:
     // Hardware Configuration
-    Crain():m_speed(0), touch_q(ev3dev::INPUT_2), ultra_q(ev3dev::INPUT_3),a(ev3dev::OUTPUT_B), b(ev3dev::OUTPUT_C), c(ev3dev::OUTPUT_A)
+    Crain():m_speed(0), touch_q(ev3dev::INPUT_2), ultra_q(ev3dev::INPUT_3),b(ev3dev::OUTPUT_B), c(ev3dev::OUTPUT_C), a(ev3dev::OUTPUT_A)
     {
         
     }
@@ -102,31 +103,130 @@ public:
     void example_code();
     void example_code2();
 };
+
 void Crain::example_code2()
 {
-        int posb;
-        posb = b.position();
-        b.reset();
-        if(posb == 0)
-        {   
-            b.set_position_sp(600);
-            b.set_speed_sp(get_speed());
+      
+        a.reset(); //위 아래
+        b.reset(); //집게
+        c.reset(); //좌우
+        //start에서 finish 로
+        b.set_speed_sp(500);
+        b.set_position_sp(-200);
+        b.run_to_abs_pos();
+        b.set_stop_action("hold");
+        b.stop();
+        c.set_speed_sp(500);
+        c.set_position_sp(600);
+        c.run_to_abs_pos();
+        sleep(2);
+        std::cout<<"hello"<<std::endl;
+        /*// 집게 내려가기
+        b.set_speed_sp(300);
+        b.set_position_sp(0);
+        b.run_to_abs_pos();
+        sleep(2);
+        b.set_stop_action("hold");
+        std::cout<<"hello1"<<std::endl;
+        //집게가 잡는부분
+        a.set_speed_sp(300);
+        a.set_position_sp(50);
+        a.run_to_abs_pos();
+        a.set_stop_action("hold");
+        sleep(2);
+        std::cout<<"hello2"<<std::endl;
+        //집게 올리는 부분
+        b.set_speed_sp(300);
+        b.set_position_sp(-200);
+        b.run_to_abs_pos();
+        b.set_stop_action("hold");
+        sleep(2);
+        
+        std::cout<<"hello3"<<std::endl;
+        */
+        
+        float distance;
+      
+        
+        for(int i = 0; i < 3 ; i++)
+        {
+            distance = 20;
+            //탐지
+            while(distance  > 15){
+            
+               distance = ultra_q.distance_centimeters();
+               c.set_position_sp(-20);
+               c.set_speed_sp(150);
+               c.run_to_rel_pos();
+               std::cout << distance << std::endl;
+            }
+            //집게 내리기
+            b.set_speed_sp(300);
+            b.set_position_sp(0);
             b.run_to_abs_pos();
-            b.stop_action();
+            b.set_stop_action("hold");
+            b.stop();
+            sleep(1);
+            std::cout<<"hello1"<<std::endl;
+            //집게가 잡는부분
+            a.set_speed_sp(300);
+            a.set_position_sp(50);
+            a.run_to_abs_pos();
+            a.set_stop_action("hold");
+            sleep(1);
+            std::cout<<"hello2"<<std::endl;
+            //집게 올리는 부분
+            b.set_speed_sp(300);
+            b.set_position_sp(-200);
+            b.run_to_abs_pos();
+            b.set_stop_action("hold");
+            sleep(1);
+            //finish로
+            c.set_speed_sp(600);
+            c.set_position_sp(510);
+            c.run_to_abs_pos();
+            sleep(1);
+            // 내리기
+            b.set_speed_sp(600);
+            b.set_position_sp(0);
+            b.run_to_abs_pos();
+            sleep(1);
+            // 집게 피기
+            a.set_speed_sp(500);
+            a.set_position_sp(0);
+            a.run_to_abs_pos();
+            sleep(0.8);
+            // 올리기
+            b.set_speed_sp(500);
+            b.set_position_sp(-200);
+            b.run_to_abs_pos();
+            b.set_stop_action("hold");
+            
         }
         
         
+    /*b.set_position_sp(0);
+    b.set_speed_sp(300);
+    b.run_to_rel_pos();
+    
+    c.set_position_sp(0);
+    c.set_speed_sp(300);
+    c.run_to_abs_pos();
+    
+    a.set_position_sp(0);
+    a.set_speed_sp(300);
+    a.run_to_abs_pos();
+    */
         
         
         
         
-        /*set_right(get_right());
-        b.set_position_sp(0);
-        b.set_speed_sp(-1*get_speed());
-        b.run_to_abs_pos();*/
+        
+    
+        
+     
         
         
-            
         
         
 
@@ -144,6 +244,9 @@ void Crain::example_code()
         set_enter(ev3dev::button::enter.pressed());
         
         int posa, posb, posc;
+        a.reset();
+        b.reset();
+        c.reset();
         posa = a.position();
         posb = b.position();
         posc = c.position();
