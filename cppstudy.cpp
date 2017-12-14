@@ -2,22 +2,22 @@
 
 using namespace std;
 
+
+typedef struct Animal
+{
+    char name[30]; // 이름
+    int age; // 나이
+
+    int health; // 체력
+    int food; // 배부른 정도
+    int clean; // 깨끗한 정도
+} Animal;
+
+
+
 int main(){
     
-    int val1 = 20;
-    int val2 = 30;
-    int val3 = 40;
-    
-    const int num = 10;
-    const int *ptr1 = &val1;
-    int * const ptr2 = &val2;
-    const int * const ptr3 = &val3;
-    
-    ptr3 = &val2;
-
-    cout << num << endl;
-    cout << ptr1 << endl;
-    cout << ptr2 << endl;
-    cout << ptr3 << endl;
+    Animal* list[10];
+    list[0] = 1;
     
 }
